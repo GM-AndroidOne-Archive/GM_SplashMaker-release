@@ -3,8 +3,8 @@ import sys
 import struct
 from PIL import Image
 
-WIDTH = 720
-HEIGHT = 1440
+WIDTH = 1080
+HEIGHT = 1920
 
 def u32le(b):
     return struct.unpack("<I", b)[0]
