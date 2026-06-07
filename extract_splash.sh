@@ -8,15 +8,13 @@ if [ ! -f "$STOCK" ]; then
     exit 1
 fi
 
-mkdir -p pics .tmp_qsplash
+mkdir -p pics .tmp_bmp
 
-dd if="$STOCK" of=.tmp_qsplash/boot.qsplash     bs=1 skip=0      count=58880  status=none
-dd if="$STOCK" of=.tmp_qsplash/fastboot.qsplash bs=1 skip=58880  count=75264  status=none
+dd if="$STOCK" of=.tmp_bmp/boot.bmp bs=1 skip=16384 count=6998454 status=none
 
-python3 qsplash_tool.py decode .tmp_qsplash/boot.qsplash pics/boot.png
-python3 qsplash_tool.py decode .tmp_qsplash/fastboot.qsplash pics/fastboot.png
+python3 bmp_tool.py extract .tmp_bmp/boot.bmp pics/boot.png
 
-rm -rf .tmp_qsplash
+rm -rf .tmp_bmp
 
-echo "Islem tamamlandi : pics/boot.png ve pics/fastboot.png basariyla cikartildi."
+echo "Islem tamamlandi : pics/boot.png basariyla cikartildi."
 echo "Geri paketlemek icin (bash make_splash.sh) kullan."
